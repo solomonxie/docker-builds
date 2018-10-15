@@ -2,6 +2,8 @@ FROM ubuntu:16.04
 
 MAINTAINER "Solomonxie <solomonxiewise@gmail.com>"
 
+EXPOSE 23456
+
 COPY go.sh /tmp/go.sh
 
 RUN chmod +x /tmp/go.sh && \
@@ -12,7 +14,5 @@ RUN chmod +x /tmp/go.sh && \
 ENV PATH /usr/bin/v2ray:$PATH
 
 COPY config.json /etc/v2ray/config.json
-
-EXPOSE 23456
 
 CMD ["v2ray", "-config=/etc/v2ray/config.json"]
