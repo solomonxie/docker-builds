@@ -16,4 +16,3 @@ COPY config.json /etc/v2ray/config.json
 EXPOSE 23456
 
 CMD ["v2ray", "-config=/etc/v2ray/config.json"]
-
