@@ -1,9 +1,0 @@
-version: '0.1'
-services:
-    jekyll:
-        build: .
-        ports:
-            - "4000:4000"
-        volumes:
-            - .:/var/www/html
-
