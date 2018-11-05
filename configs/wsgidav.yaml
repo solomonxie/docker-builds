@@ -1,5 +1,8 @@
 # WsgiDAV configuration file
 #
+# MAINTAINER: Solomon Xie <solomonxiewise@gmail.com>
+# ENVIRONMENT: Linux / Mac
+# 
 # 1. Rename this file to `wsgidav.yaml`
 # 2. Adjust settings as appropriate
 # 3. Run `wsgidav` from the same directory or pass file name with `--config` option.
