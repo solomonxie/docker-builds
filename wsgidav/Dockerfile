@@ -3,13 +3,16 @@ FROM python:3.7-alpine
 MAINTAINER Solomon Xie <solomonxiewise@gmail.com>
 # Thanks to mar10/wsgidav
 
+RUN pip install --no-cache-dir wsgidav cheroot && \
+    mkdir -p /var/wsgidav
+
 # Compile dependencies to pip install lxml (including alpine musl libc)
-RUN apk --no-cache add gcc libxslt-dev musl-dev
+#: Bug, can't install lxml. wsgidav works fine without lxml
+#RUN apk --no-cache add gcc libxslt-dev musl-dev
+#RUN pip install --no-cache-dir lxml
 
-RUN pip install --no-cache-dir wsgidav cheroot
-RUN mkdir -p /var/wsgidav/root
-
+VOLUME /var/wsgidav
 EXPOSE 80
-VOLUME /var/wsgidav/root
 
-CMD wsgidav --host 0.0.0.0 --port 80 --root /var/wsgidav/root --no-config
+#CMD wsgidav --host 0.0.0.0 --port 8080 --root /var/wsgidav/ --no-config
+CMD wsgidav -c /var/wsgidav/config/wsgidav.yaml
