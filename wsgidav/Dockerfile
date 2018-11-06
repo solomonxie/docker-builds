@@ -1,4 +1,4 @@
-FROM python:3.7-alpine
+FROM python:3-alpine
 
 MAINTAINER Solomon Xie <solomonxiewise@gmail.com>
 # Thanks to mar10/wsgidav
@@ -10,6 +10,8 @@ RUN pip install --no-cache-dir wsgidav cheroot && \
 #: Bug, can't install lxml. wsgidav works fine without lxml
 #RUN apk --no-cache add gcc libxslt-dev musl-dev
 #RUN pip install --no-cache-dir lxml
+
+COPY configs/wsgidav.yaml /var/wsgidav/configs/
 
 VOLUME /var/wsgidav
 EXPOSE 80
