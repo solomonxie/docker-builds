@@ -3,10 +3,12 @@ FROM ubuntu:16.04
 MAINTAINER Solomon Xie <14041622+solomonxie@users.noreply.github.com>
 
 RUN apt-get update && \
-    apt-get install curl wget git bashdb -y
+    apt-get install sudo curl wget git bashdb -y
 
-RUN useradd -m -p "123" -s /bin/bash ubuntu && \
+RUN useradd -m -s /bin/bash ubuntu && \
     usermod -aG sudo ubuntu && \
+    echo "root:root123" | chpasswd && \
+    echo "ubuntu:ubuntu123" | chpasswd && \
     su - ubuntu
 
 WORKDIR /home/ubuntu
