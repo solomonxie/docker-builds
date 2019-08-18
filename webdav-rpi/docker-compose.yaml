@@ -1,0 +1,9 @@
+version: "3"
+services:
+    webdav_rpi:
+        image: solomonxie/webdav-rpi:jessie
+        restart: always
+        volumes:
+            - ~/webdav:/var/www/webdav
+        ports:
+            - "8888:80"
