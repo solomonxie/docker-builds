@@ -1,5 +1,4 @@
-MAINTAINER Solomon Xie <solomonxiewise@gmail.com>
-
 FROM ubuntu:18.04
+MAINTAINER Solomon Xie <solomonxiewise@gmail.com>
 
 RUN apt-get update && apt-get upgrade && apt-get install build-essential
