@@ -1,0 +1,22 @@
+FROM ubuntu:18.04
+MAINTAINER Solomon Xie <solomonxiewise@gmail.com>
+
+COPY sources.list /etc/apt/sources.list
+
+# DON'T DIRECTLY USE `pip install` BECAUSE THAT WILL INSTALL FOR PYTHON3.6
+RUN apt-get update && \
+    apt-get install -y build-essential && \
+    apt-get install -y libssl-dev libffi-dev  libxml2-dev libxslt1-dev zlib1g-dev && \
+    apt-get install -y python3.7 python3.7-dev && \
+    apt-get install -y python3-distutils python3-pip  python3-setuptools && \
+    ln -sf /usr/bin/python3.7 /usr/bin/python && \
+    ln -sf /usr/bin/pip3 /usr/bin/pip
+RUN python3.7 -m pip install wheel && \
+    python3.7 -m pip install -r /requirements.txt && \
+    apt-get -y clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    apt -y remove build-essential python3.7-dev python3-distutils python3-pip  python3-setuptools && \
+    apt -y autoremove
+
+# RUN python3.7 -m compileall main.py config.py
+CMD ["python3.7", "/main.py"]
